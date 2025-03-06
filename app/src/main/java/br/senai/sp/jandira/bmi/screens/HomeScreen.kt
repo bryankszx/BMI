@@ -11,9 +11,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Paid
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -121,7 +124,11 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                                 .fillMaxWidth()
                                 .padding(top = 8.dp),
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text,
-                                capitalization = KeyboardCapitalization.Words)
+                                capitalization = KeyboardCapitalization.Words),
+                            leadingIcon = {
+                                Icon( imageVector = Icons.Default.Paid,
+                                    contentDescription = "")
+                            }
                         )
                     }
                     Button(
