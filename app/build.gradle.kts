@@ -57,5 +57,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Icone
     implementation(libs.androidx.material.icons.extended.android)
+
+    // Navegar
+    implementation("androidx.navigation:navigation-compose:2.8.9")
+
 }
