@@ -1,13 +1,16 @@
 package br.senai.sp.jandira.bmi.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -20,6 +23,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -27,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -84,6 +89,49 @@ fun UserDataa(modifier: Modifier = Modifier) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.End
                 ) {
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.iconmale),
+                                contentDescription = "Ícone Masculino",
+                                modifier = Modifier.height(100.dp)
+                                    .size(100.dp)
+                            )
+                            Button(
+                                onClick = {},
+                                modifier = Modifier.padding(top = 8.dp),
+                                shape = RoundedCornerShape(10.dp)
+                            ) {
+                                Text(text = "Male", color = Color.White)
+                            }
+                        }
+
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.female),
+                                contentDescription = "Ícone Feminino",
+                                modifier = Modifier.height(100.dp)
+                                    .size(100.dp)
+                            )
+                            Button(
+                                onClick = {},
+                                modifier = Modifier.padding(top = 8.dp),
+                                shape = RoundedCornerShape(10.dp)
+                            ) {
+                                Text(text = "Female", color = Color.White)
+                            }
+                        }
+                    }
+
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -92,7 +140,7 @@ fun UserDataa(modifier: Modifier = Modifier) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
 
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {},
                             modifier = Modifier
@@ -110,7 +158,7 @@ fun UserDataa(modifier: Modifier = Modifier) {
                                 )
                             }
                         )
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {},
                             modifier = Modifier
@@ -128,7 +176,7 @@ fun UserDataa(modifier: Modifier = Modifier) {
                                 )
                             }
                         )
-                        TextField(
+                        OutlinedTextField(
                             value = "",
                             onValueChange = {},
                             modifier = Modifier
@@ -139,7 +187,7 @@ fun UserDataa(modifier: Modifier = Modifier) {
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number,
 
-                            ),
+                                ),
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Height,
@@ -158,7 +206,7 @@ fun UserDataa(modifier: Modifier = Modifier) {
                             shape = RoundedCornerShape(10.dp)
                         ) {
                             Text(
-                                text = stringResource(R.string.next),
+                                text = stringResource(R.string.calculate),
                                 fontSize = 25.sp,
                                 color = Color.White,
                                 fontWeight = FontWeight.Bold

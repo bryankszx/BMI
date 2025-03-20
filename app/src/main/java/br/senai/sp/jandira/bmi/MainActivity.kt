@@ -25,9 +25,7 @@ class MainActivity : ComponentActivity() {
                     composable(route = "home"){ HomeScreen(navegacao)}
                     composable(route = "dados"){ UserDataa() }
                 }
-                }
             }
         }
     }
-
-
+}

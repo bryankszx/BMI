@@ -39,9 +39,9 @@ import br.senai.sp.jandira.bmi.R
 
 @Composable
 fun HomeScreen(navegacao: NavHostController) {
-       var nameSate = remember {
-           mutableStateOf("å")
-       }
+    var nameSate = remember {
+        mutableStateOf("å")
+    }
 
     Box(
         modifier = Modifier
