@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -40,8 +42,23 @@ import br.senai.sp.jandira.bmi.R
 @Composable
 fun HomeScreen(navegacao: NavHostController) {
     var nameSate = remember {
-        mutableStateOf("å")
+        mutableStateOf("")
     }
+
+    // Abrir ou Criar arquivo SharedPreference
+    val context  = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
+
+    // Colocar o arquivo em modo de ediçao
+
+    val editor = userFile.edit()
+
+
+    var isErrorState = remember {
+        mutableStateOf( false)
+    }
+
 
     Box(
         modifier = Modifier
@@ -129,12 +146,30 @@ fun HomeScreen(navegacao: NavHostController) {
                             leadingIcon = {
                                 Icon( imageVector = Icons.Default.Paid,
                                     contentDescription = "")
+                            },
+                            isError = isErrorState.value,
+                            supportingText = {
+
+                                    if (isErrorState.value){
+                                        Text(
+                                            text = stringResource(R.string.error_name)
+                                        )
+                                    }
+
+
                             }
                         )
                     }
                     Button(
                         onClick = {
-                            navegacao.navigate("dados")
+                            if(nameSate.value.isEmpty()){
+                                isErrorState.value = true
+                            } else {
+                                editor.putString("user_name", nameSate.value)
+                                editor.apply()
+                                navegacao.navigate("dados")
+                            }
+
                         },
                         shape = RoundedCornerShape(8.dp)
                     ) {

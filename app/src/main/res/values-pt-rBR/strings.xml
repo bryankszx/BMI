@@ -4,5 +4,6 @@
     <string name="welcome">Bem-Vindo!</string>
     <string name="your_name">Qual é o seu nome?</string>
     <string name="next">Próximo</string>
+    <string name="error_name">O nome do usuário é obrigatório!</string>
 
 </resources>
