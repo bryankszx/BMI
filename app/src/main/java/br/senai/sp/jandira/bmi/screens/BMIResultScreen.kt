@@ -39,11 +39,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
+import br.senai.sp.jandira.bmi.calcs.bmiCalculate
 import java.util.Locale
 
 
 @Composable
-fun ResultBMI(navegacao: NavHostController){
+fun ResultBMI(){
 
         val context = LocalContext.current
     var userFile = context.getSharedPreferences("userFile", Context.MODE_PRIVATE)
@@ -51,7 +52,11 @@ fun ResultBMI(navegacao: NavHostController){
     val userWeight = userFile.getInt("user_weight", 0)
     val userHeight = userFile.getFloat("user_height", 0.0f)
     val userAge = userFile.getInt("user_age", 0)
-    
+
+    val bmi = bmiCalculate(userWeight, userHeight.toDouble().div(100))
+
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -117,7 +122,11 @@ fun ResultBMI(navegacao: NavHostController){
                             verticalArrangement = Arrangement.Center
                         )   {
                             Text(
-                                text = stringResource(R.string.bmi_value),
+                                text = String.format(
+                                    Locale.getDefault(),
+                                    "%.1f",
+                                    bmi.bmi.second
+                                ),
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 35.sp
@@ -130,7 +139,7 @@ fun ResultBMI(navegacao: NavHostController){
                         horizontalAlignment = Alignment.CenterHorizontally
                     ){
                         Text(
-                            text = stringResource(R.string.class_bmi),
+                            text = bmi.bmi.first,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp
@@ -240,5 +249,5 @@ fun ResultBMI(navegacao: NavHostController){
 @Preview(showSystemUi = true)
 @Composable
 private fun BMIResultPreview() {
-    //ResultBMI()
+    ResultBMI()
 }
